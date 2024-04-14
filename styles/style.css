@@ -338,6 +338,7 @@
   border: 2px solid var(--accent-color);
   padding: 30px;
   color: var(--accent-color);
+  background-color: var(--background-color);
   transition: opacity 0.3s ease-in-out;
   max-inline-size: 353px;
   inline-size: 25%;
