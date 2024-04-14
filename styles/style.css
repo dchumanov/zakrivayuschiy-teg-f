@@ -1,20 +1,393 @@
-/* Здесь вы напишете основную часть стилей страницы.
-
-Будьте внимательны! Для корректной работы скриптов на этом сайте нужно, чтобы в HTML некоторые классы были названы особым образом:
-✦ theme-dark — класс тёмной темы
-✦ theme-light — класс светлой темы
-✦ like-icon — для svg-иконки анимированного сердца
-✦ card__like-button — для кнопки Like рядом с иконкой
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
-✦ button__text — для обозначения текстового элемента внутри кнопки
-
-Кроме этого, не меняйте HTML переключателя тем. Его разметка также гарантирует работу своего скрипта.
-
-*/
-
 .page {
+  color: var(--accent-color);
+  font-family: var(--main-font-family), sans-serif;
+  font-size: 18px;
+  background-color: var(--background-color);
+  background-image: var(--background-image);
+  background-size: cover;
+  background-attachment: fixed;
   min-inline-size: 320px;
   min-block-size: 100dvb;
+  font-variation-settings: "wght" var(--content-font-weight);
+}
+
+/* Общие стили для расположение контента на странице */
+
+.content-section-width {
+  width: var(--content-width);
+}
+
+.content-section-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Общие стили кнопок */
+
+.content-button {
+  position: relative;
+  border: 2px solid var(--accent-color);
+  overflow: hidden;
+  font-family: var(--accent-font-family), fantasy;
+  font-size: 14px;
+  transition: box-shadow 300ms ease;
+  cursor: pointer;
+}
+
+.content-button:focus {
+  outline: none;
+}
+
+.content-button:focus-visible {
+  box-shadow: 2px 2px 0 0 var(--accent-color);
+  outline: none;
+  transition: box-shadow 300ms ease;
+}
+
+.content-button::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--accent-color);
+  transition: transform 0.5s ease-in-out;
+  transform: translateX(-100%);
+}
+
+.content-button:hover::before {
+  transform: translateX(0);
+}
+
+.button__text {
+  position: relative;
+  z-index: 1;
+  color: var(--button-text-color);
+  mix-blend-mode: difference;
+}
+
+/* Стили хедера */
+
+.header {
+  margin: 100px auto;
+  border: 2px solid var(--accent-color);
+  /* padding-top: clamp(6.375rem, 5.6268rem + 3.1925vw, 8.5rem); */
+  padding-top: clamp(7.5rem, 7.1479rem + 1.5023vw, 8.5rem);
+  padding-bottom: 20px;
+  font-family: var(--accent-font-family), fantasy;
+  text-transform: uppercase;
+  background-color: var(--background-color);
+}
+
+.header__logo {
+  font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
+}
+
+.header__title {
+  margin-top: 18px;
+  margin-bottom: 18px;
+  font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
+}
+
+.theme-menu__list {
+  position: relative;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+/* Стили кнопок выбора тем */
+
+.theme-menu__button {
+  position: relative;
+  border: none;
+  color: var(--accent-color);
+  font-size: 14px;
+  text-transform: uppercase;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.theme-menu__button:disabled {
+  opacity: 0.6;
+  transition: opacity 300ms ease;
+  pointer-events: none;
+}
+
+.theme-menu__button:hover {
+  opacity: 0.6;
+  transition: opacity 300ms ease;
+}
+
+.theme-menu__button:focus {
+  outline: none;
+  opacity: 0.6;
+}
+
+.theme-menu__button::after {
+  content: "";
+  display: block;
+  width: 0%;
+  height: 2px;
+  margin-top: 0;
+  background-color: var(--accent-color);
+  transition: width 300ms ease, opacity 300ms ease;
+  /* 
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 300ms ease; 
+  */
+}
+
+.theme-menu__button:focus-visible::after {
+  /* transform: scaleX(1); */
+  width: 100%;
+  opacity: 0.6;
+}
+
+.theme-menu__button:disabled::before {
+  content: "▶";
+  position: absolute;
+  top: 1px;
+  left: -17px;
+  animation: moving-arrow 0.5s ease-in-out infinite alternate;
+}
+
+/* Стили мейн */
+
+.main {
+  flex-direction: column;
+  gap: 50px;
+  margin: 0 auto;
+}
+
+.card {
+  border: 2px solid var(--accent-color);
+  background-color: var(--background-color);
+}
+
+.card__title {
+  margin: 5px 10px;
+  font-size: inherit;
+  font-variation-settings: "wght" var(--title-font-weight);
+}
+
+.card__image-container {
+  position: relative;
+  border-top: 2px solid var(--accent-color);
+}
+
+.card__image-label {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  color: var(--accent-color);
+  font-family: var(--accent-font-family), fantasy;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-shadow: -1px 0 var(--stroke-color), 0 1px var(--stroke-color),
+    1px 0 var(--stroke-color), 0 -1px var(--stroke-color);
+  mix-blend-mode: hard-light;
+}
+
+@supports (
+  (-webkit-text-stroke: 0.03em var(--stroke-color)) or
+    (-webkit-text-stroke: 0.03em var(--stroke-color))
+) {
+  .card__image-label {
+    text-shadow: none;
+    -webkit-text-stroke: 0.03em var(--stroke-color);
+    /* text-stroke: 0.03em var(--stroke-color); */
+  }
+}
+
+.card__image {
+  width: 100%;
+  object-fit: cover;
+  aspect-ratio: 1/1;
+}
+
+.card__description {
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+  margin: 24px 25px;
+}
+
+.card__buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: center;
+  gap: 8px;
+  margin-right: 25px;
+  margin-bottom: 25px;
+}
+
+/* Стили для контейнера под сердечное svg */
+
+.card__icon-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 40px;
+  height: 35px;
+  padding: 0;
+  background-color: transparent;
+  cursor: pointer;
+  /* border: 2px solid transparent; */
+}
+
+.sparks {
+  opacity: 0;
+}
+
+.card__icon-button:focus {
+  outline: none;
+}
+
+.card__icon-button:focus-visible {
+  outline: 2px solid var(--accent-color);
+  transition: outline 0.1s ease;
+}
+
+/* Кнопка с текстом Like */
+
+.card__like-button {
+  min-width: 130px;
+  height: 38px;
+  background-color: transparent;
+}
+
+/* Фотки */
+
+.image-brightness {
+  filter: brightness(30%);
+}
+
+.image-contrast {
+  filter: contrast(10%);
+}
+
+.image-blur {
+  filter: blur(0.2rem);
+}
+
+.image-opacity {
+  filter: opacity(0.4);
+}
+
+.image-grayscale {
+  filter: grayscale(0.8);
+}
+
+.image-saturate {
+  filter: saturate(190%);
+}
+
+.image-multiple-filters {
+  filter: invert(1) brightness(200%) saturate(60%) hue-rotate(90deg);
+}
+
+/* Стили футера */
+
+.footer {
+  margin: 50px auto 100px;
+}
+
+.footer__button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 335px;
+  height: 55px;
+  background-color: var(--background-color);
+  /* padding: 19px 20px; */
+  white-space: nowrap;
+}
+
+.footer__floppy {
+  position: relative;
+  z-index: 1;
+  width: 21px;
+  height: 21px;
+  color: var(--button-text-color);
+  mix-blend-mode: difference;
+}
+
+/* Диалоговое окно */
+
+.dialog-save::backdrop {
+  background-color: rgb(0 0 0 / 0.75);
+}
+
+.dialog-save {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-template-rows: 63px 38px;
+  gap: 30px 20px;
+  border: 2px solid var(--accent-color);
+  padding: 30px;
+  color: var(--accent-color);
+  transition: opacity 0.3s ease-in-out;
+  max-inline-size: 353px;
+  inline-size: 25%;
+  min-inline-size: 341px;
+}
+
+.dialog__floppy {
+  width: 39px;
+  height: 39px;
+}
+
+.dialog__text {
+  font-family: var(--accent-font-family), fantasy;
+  font-size: 14px;
+  line-height: 150%;
+  text-transform: uppercase;
+}
+
+.dialog__button {
+  grid-column: 1/3;
+  text-transform: uppercase;
+  background-color: transparent;
+}
+
+dialog:not([open]) {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (width <= 375px) {
+  .header__title {
+    margin-top: 10px;
+  }
+
+  .footer__button {
+    flex-direction: column;
+    width: 306px;
+    height: 84px;
+    white-space: nowrap;
+    /* padding: 15px 20px; */
+  }
+
+  .footer__floppy {
+    width: 28px;
+    height: 28px;
+  }
+
+  .card__image-label {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+  }
 }

@@ -1,1 +1,35 @@
-/* В этом файле будут храниться все значения переменных в исходном состоянии, а так же их изменения в зависимости от ширины устройства */
+:root {
+  /* Шрифт */
+  --main-font-family: 'Inter-Variable';
+  --title-font-weight: 700;
+  --content-font-weight: 400;
+  --accent-font-family: 'PressStart2P-Regular';
+
+  /* Основы для изменения цветовых тем */
+  --background-color: #fff;
+  --accent-color: #000;
+  --stroke-color: #fff;
+  --button-text-color: #fff;
+  --heart-contour-color: #000;
+  --heart-fill-color: #FF0000;
+
+  /* Фон */
+  --base-gradient-color-start: #d3d3d3;
+  --base-gradient-color-end: transparent;
+  --surface-gradient-color-start: #e7e7e7;
+  --surface-gradient-color-end: #1a1a1a;
+  --background-image: 
+  repeating-linear-gradient(to right, var(--base-gradient-color-start) 0 2px, var(--base-gradient-color-end) 2px 4px),
+  repeating-linear-gradient(to bottom, var(--base-gradient-color-start) 0 2px, var(--base-gradient-color-end) 2px 4px),
+  linear-gradient(to bottom, var(--surface-gradient-color-start) 0%, var(--surface-gradient-color-start) 0.1%, var(--surface-gradient-color-end) 100%);
+
+  /* Размеры */
+  --content-width: clamp(23.4375rem, 16.2852rem + 30.5164vw, 43.75rem);
+
+}
+
+@media (width <= 375px) {
+  :root {
+    --content-width: min(100%, 375px);
+  }
+}
