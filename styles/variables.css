@@ -1,9 +1,9 @@
 :root {
   /* Шрифт */
-  --main-font-family: 'Inter-Variable';
+  --main-font-family: 'Inter';
   --title-font-weight: 700;
   --content-font-weight: 400;
-  --accent-font-family: 'PressStart2P-Regular';
+  --accent-font-family: 'PressStart2P';
 
   /* Основы для изменения цветовых тем */
   --background-color: #fff;

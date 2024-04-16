@@ -10,6 +10,19 @@
 
 /* Стили сердечка */
 
+.like-icon {
+  width: 39px;
+  height: 36px;
+}
+
+.heart {
+  transform-origin: center;
+}
+
+.sparks {
+  opacity: 0;
+}
+
 /* hover */
 .like-icon:hover .core {
   fill: var(--heart-contour-color);
@@ -59,8 +72,12 @@
 }
 
 .like-icon.is-liked .heart {
-  transform-origin: center;
-  animation: heart-scaling 0.3s ease-in 0.1s 1 normal;
+  animation-name: heart-scaling;
+  animation-delay: 0.1s;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 0.3s;
 }
 
 @keyframes heart-scaling {
@@ -75,7 +92,12 @@
 }
 
 .like-icon.is-liked .sparks {
-  animation: sparks 0.3s ease-in 0.3s normal;
+  animation-name: sparks;
+  animation-delay: 0.3s;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 0.3s;
 }
 
 @keyframes sparks {
@@ -89,7 +111,7 @@
   }
 }
 
-.like-icon:not(.is-liked) .contour {
+.like-icon .contour {
   fill: var(--heart-contour-color);
   transition: fill 0.1s linear;
 }
