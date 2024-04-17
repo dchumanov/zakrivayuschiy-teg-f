@@ -32,6 +32,10 @@
   --button-text-color: #fff;
   --heart-contour-color: #000;
 
+  /* Шрифт */
+  --title-font-weight: 700;
+  --content-font-weight: 400;
+
  /* Фон */
   --base-gradient-color-start: #d3d3d3;
   --surface-gradient-color-start: #e7e7e7;
